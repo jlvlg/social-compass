@@ -1,4 +1,5 @@
 import { Inter, Poppins } from "next/font/google";
+import "./fonts.scss";
 
 export const poppins = Poppins({
   subsets: ["latin"],
@@ -10,3 +11,5 @@ export const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
 });
+
+export default [inter, poppins].join(" ");

@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "lint-staged",
+    "lint": "next lint && stylelint **/*.scss",
+    "lint:staged": "lint-staged",
     "prepare": "husky install",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
@@ -14,6 +15,7 @@
   },
   "dependencies": {
     "next": "14.0.3",
+    "normalize.css": "^8.0.1",
     "react": "^18",
     "react-dom": "^18"
   },

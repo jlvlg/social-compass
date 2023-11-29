@@ -22,7 +22,8 @@
       "@/*": ["./*"],
       "@/components/*": ["./app/components/*"],
       "@/styles/*": ["./app/styles/*"],
-      "@/tests/*": ["./app/tests"]
+      "@/tests/*": ["./app/tests/*"],
+      "@/assets/*": ["./app/assets/*"]
     }
   },
   "include": [
