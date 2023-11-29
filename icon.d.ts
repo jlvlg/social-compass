@@ -1,3 +1,4 @@
 declare module "*.svg" {
-  export default React.FC<React.SVGAttributes<SVGElement>>;
+  const ReactComponent: React.FC<React.SVGAttributes<SVGElement>>;
+  export default ReactComponent;
 }

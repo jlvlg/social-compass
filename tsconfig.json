@@ -20,15 +20,15 @@
     ],
     "paths": {
       "@/*": ["./*"],
-      "@/components/*": ["./app/components/*"],
-      "@/styles/*": ["./app/styles/*"],
-      "@/tests/*": ["./app/tests/*"],
-      "@/assets/*": ["./app/assets/*"]
+      "@components/*": ["./app/components/*"],
+      "@styles/*": ["./app/styles/*"],
+      "@tests/*": ["./app/tests/*"],
+      "@assets/*": ["./app/assets/*"]
     }
   },
   "include": [
-    "next-env.d.ts",
     "icon.d.ts",
+    "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
