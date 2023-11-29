@@ -1,4 +1,8 @@
 import type { Preview } from "@storybook/react";
+import "@styles/fonts.scss";
+import fonts from "@styles/fonts";
+import "normalize.css";
+import React from "react";
 
 const preview: Preview = {
   parameters: {
@@ -10,6 +14,13 @@ const preview: Preview = {
       },
     },
   },
+  decorators: [
+    (Story) => (
+      <div className={fonts}>
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 export default preview;

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import fonts from "@styles/fonts";
-import "@/node_modules/normalize.css/normalize.css";
+import { inter, poppins } from "@styles/fonts";
+import "@styles/fonts.scss";
+import "normalize.css";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -14,7 +15,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-BR">
-      <body className={fonts}>{children}</body>
+      <body className={}>{children}</body>
     </html>
   );
 }

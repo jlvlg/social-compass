@@ -1,36 +1,16 @@
 import React from "react";
-import Icons from "@assets/icons";
-import variables from "@styles/variables.module.scss";
+import getIcon, { IconType } from "@assets/icons";
 
-type Props = {
-  icon?: keyof typeof Icons | React.FC<React.SVGAttributes<SVGElement>>;
-  sizing?:
-    | "xxxxs"
-    | "xxxs"
-    | "xxs"
-    | "xs"
-    | "sm"
-    | "md"
-    | "lg"
-    | "xl"
-    | "xxl"
-    | "xxxl"
-    | "xxxxl";
-  color?: string;
+export type Props = {
+  icon?: IconType;
+  className?: string;
+  style?: React.CSSProperties;
 };
 
-function Icon({ icon = "article", sizing = "md", color = "black" }: Props) {
-  const IconSVG = typeof icon === "string" ? Icons[icon] : icon;
+function Icon({ icon = "article", className, style }: Props) {
+  const IconSVG = getIcon(icon);
 
-  return (
-    <IconSVG
-      style={{
-        blockSize: variables[sizing],
-        inlineSize: variables[sizing],
-        color,
-      }}
-    />
-  );
+  return <IconSVG className={className} style={style} />;
 }
 
 export default Icon;

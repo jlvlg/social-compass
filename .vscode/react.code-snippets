@@ -4,7 +4,7 @@
     "body": [
       "import React from 'react';",
       ""
-      "type Props = {}",
+      "export type Props = {}",
       "",
       "function ${1:$TM_FILENAME_BASE}({}: Props) {",
       "  return <div>${1:$TM_FILENAME_BASE}</div>;",

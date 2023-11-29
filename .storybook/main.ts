@@ -1,6 +1,5 @@
 import { TsconfigPathsPlugin } from "tsconfig-paths-webpack-plugin";
 import type { StorybookConfig } from "@storybook/nextjs";
-import { RuleSetRule, RuleSetCondition } from "webpack";
 
 import path from "path";
 

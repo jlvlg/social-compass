@@ -1,0 +1,51 @@
+@use "../../../styles/colors" as c;
+@use "../../../styles/sizings" as s;
+@use "../../../styles/typography" as t;
+@use "sass:map";
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  padding-inline: map.get(s.$sizes, "lg");
+  padding-block: map.get(s.$sizes, "sm");
+  align-items: center;
+  gap: map.get(s.$sizes, "lg");
+  border-radius: 46px;
+  border: 2px solid c.$white;
+  cursor: text;
+
+  label {
+    position: absolute;
+    transition: color 100ms ease;
+    color: c.$gray-300;
+    cursor: text;
+  }
+
+  svg {
+    @include s.box("lg");
+
+    color: c.$white;
+  }
+
+  input {
+    inline-size: 100%;
+    border: none;
+
+    @include t.input;
+
+    color: c.$white;
+
+    &:focus {
+      outline: none;
+
+      & + label {
+        color: c.$white;
+      }
+    }
+  }
+}
+
+.invalid {
+  border-color: c.$yellow;
+}

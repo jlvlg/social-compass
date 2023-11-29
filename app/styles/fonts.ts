@@ -12,4 +12,4 @@ export const inter = Inter({
   variable: "--font-inter",
 });
 
-export default [inter, poppins].join(" ");
+export default [inter, poppins].map((i) => i.className).join(" ");

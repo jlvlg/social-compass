@@ -15,8 +15,6 @@ import phone from "@assets/icons/phone.svg";
 import shield from "@assets/icons/shield.svg";
 import user from "@assets/icons/user.svg";
 
-export type Icon = React.FC<React.SVGAttributes<SVGElement>>;
-
 const Icons = {
   article,
   at,
@@ -36,4 +34,10 @@ const Icons = {
   user,
 };
 
-export default Icons;
+export type IconType =
+  | keyof typeof Icons
+  | React.FC<React.SVGAttributes<SVGElement>>;
+
+export default function getIcon(icon: IconType) {
+  return typeof icon === "string" ? Icons[icon] : icon;
+}

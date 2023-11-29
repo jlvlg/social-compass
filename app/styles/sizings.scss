@@ -1,11 +1,20 @@
-$xxxxs: 4px;
-$xxxs: 6px;
-$xxs: 12px;
-$xs: 16px;
-$sm: 19px;
-$md: 20px;
-$ls: 24px;
-$xl: 28px;
-$xxl: 32px;
-$xxxl: 42px;
-$xxxxl: 48px;
+@use "sass:map";
+
+$sizes: (
+  "xxxxs": 4px,
+  "xxxs": 6px,
+  "xxs": 12px,
+  "xs": 16px,
+  "sm": 19px,
+  "md": 20px,
+  "lg": 24px,
+  "xl": 28px,
+  "xxl": 32px,
+  "xxxl": 42px,
+  "xxxxl": 48px,
+);
+
+@mixin box($size) {
+  inline-size: map.get($sizes, $size);
+  block-size: map.get($sizes, $size);
+}

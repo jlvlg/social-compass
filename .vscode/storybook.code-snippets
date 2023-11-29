@@ -12,7 +12,7 @@
       "export default meta;",
       "type Story = StoryObj<typeof ${1:$TM_FILENAME_BASE}>;",
       "",
-      "export const ${2:common}: Story = {};"
+      "export const ${2:Common}: Story = {};"
     ]
   }
 }
