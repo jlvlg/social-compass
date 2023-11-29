@@ -1,0 +1,16 @@
+{
+  "React component": {
+    "isFileTemplate": true,
+    "body": [
+      "import React from 'react';",
+      ""
+      "type Props = {}",
+      "",
+      "function ${1:$TM_FILENAME_BASE}({}: Props) {",
+      "  return <div>${1:$TM_FILENAME_BASE}</div>;",
+      "}",
+      "",
+      "export default ${1:$TM_FILENAME_BASE};"
+    ]
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "Storybook component": {
+    "isFileTemplate": true,
+    "body": [
+      "import type { Meta, StoryObj } from '@storybook/react';",
+      "import ${1:$TM_FILENAME_BASE} from './';",
+      "",
+      "const meta: Meta<typeof ${1:$TM_FILENAME_BASE}> = {",
+      "  component: ${1:$TM_FILENAME_BASE},",
+      "};",
+      "",
+      "export default meta;",
+      "type Story = StoryObj<typeof ${1:$TM_FILENAME_BASE}>;",
+      "",
+      "export const ${2:common}: Story = {};"
+    ]
+  }
+}
