@@ -1,1 +1,1 @@
-{ "extends": ["stylelint-config-standard-scss"], "rules": { "indentation": 2 } }
+{ "extends": ["stylelint-config-standard-scss"] }
