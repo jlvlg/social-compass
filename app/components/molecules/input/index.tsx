@@ -5,13 +5,12 @@ import { IconType } from "@assets/icons";
 import styles from "./input.module.scss";
 
 type Props = {
-  type: React.HTMLInputTypeAttribute;
   icon?: IconType;
   validation?: { delay: number | "submit"; fn: (value: string) => boolean };
   placeholder: string;
 };
 
-function Input({ type, validation, icon, placeholder }: Props) {
+function Input({ validation, icon, placeholder }: Props) {
   const inputId = useId();
   const [value, setValue] = useState("");
   const ref = useRef<HTMLInputElement>(null);
@@ -46,7 +45,7 @@ function Input({ type, validation, icon, placeholder }: Props) {
         ref={ref}
         id={inputId}
         value={value}
-        type={type}
+        type="text"
         onChange={(event) => onChange(event)}
       />
       <label style={{ opacity: value ? 0 : 1 }} htmlFor={inputId}>

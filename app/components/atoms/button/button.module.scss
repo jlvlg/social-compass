@@ -1,0 +1,33 @@
+@use "@styles/colors" as c;
+@use "@styles/sizings" as s;
+@use "@styles/typography" as t;
+@use "sass:map";
+
+.button {
+  padding-inline: map.get(s.$sizes, "lg");
+  padding-block: map.get(s.$sizes, "xs");
+  inline-size: 100%;
+  border: none;
+  color: c.$white;
+  border-radius: 46px;
+
+  @include t.button;
+}
+
+.primary {
+  background: c.$gradient-button;
+  transition: color 100ms ease;
+
+  &:hover {
+    color: c.$gray-900;
+  }
+}
+
+.secondary {
+  background: c.$gradient-background;
+  transition: color 100ms ease;
+
+  &:hover {
+    color: c.$orange;
+  }
+}

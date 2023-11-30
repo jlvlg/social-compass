@@ -1,6 +1,6 @@
-@use "../../../styles/colors" as c;
-@use "../../../styles/sizings" as s;
-@use "../../../styles/typography" as t;
+@use "@styles/colors" as c;
+@use "@styles/sizings" as s;
+@use "@styles/typography" as t;
 @use "sass:map";
 
 .container {
@@ -20,6 +20,7 @@
     transition: color 100ms ease;
     color: c.$gray-300;
     cursor: text;
+    pointer-events: none;
   }
 
   svg {
@@ -31,6 +32,7 @@
   input {
     inline-size: 100%;
     border: none;
+    background: none;
 
     @include t.input;
 

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { inter, poppins } from "@styles/fonts";
+import fonts from "@styles/fonts";
 import "@styles/fonts.scss";
 import "normalize.css";
 
@@ -15,7 +15,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-BR">
-      <body className={}>{children}</body>
+      <body className={fonts}>{children}</body>
     </html>
   );
 }

@@ -1,0 +1,32 @@
+@use "colors" as *;
+@use "fonts" as *;
+@use "sizings" as *;
+@use "typography" as *;
+@use "sass:map";
+
+/* stylelint-disable */
+:export {
+  white: $white;
+  black: $black;
+  orange: $orange;
+  gradientButton: $gradient-button;
+  gray200: $gray-200;
+  gray300: $gray-300;
+  gray600: $gray-600;
+  gray650: $gray-650;
+  gray700: $gray-700;
+  gray900: $gray-900;
+  gradientBackground: $gradient-background;
+  xxxxs: map.get($sizes, "xxxxs");
+  xxxs: map.get($sizes, "xxxs");
+  xxs: map.get($sizes, "xxs");
+  xs: map.get($sizes, "xs");
+  sm: map.get($sizes, "sm");
+  md: map.get($sizes, "md");
+  ls: map.get($sizes, "ls");
+  xl: map.get($sizes, "xl");
+  xxl: map.get($sizes, "xxl");
+  xxxl: map.get($sizes, "xxxl");
+  xxxxl: map.get($sizes, "xxxxl");
+}
+/* stylelint-enable */

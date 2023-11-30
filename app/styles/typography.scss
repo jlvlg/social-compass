@@ -7,3 +7,11 @@
   font-style: normal;
   line-height: normal;
 }
+
+@mixin button() {
+  font-family: f.$font-poppins;
+  font-size: 1rem;
+  font-weight: 600;
+  font-style: normal;
+  line-height: normal;
+}
