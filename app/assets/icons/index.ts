@@ -34,9 +34,7 @@ const Icons = {
   user,
 };
 
-export type IconType =
-  | keyof typeof Icons
-  | React.FC<React.SVGAttributes<SVGElement>>;
+export type IconType = keyof typeof Icons;
 
 export default function getIcon(icon: IconType) {
   return typeof icon === "string" ? Icons[icon] : icon;

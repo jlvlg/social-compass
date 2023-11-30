@@ -14,6 +14,7 @@ export const Common: Story = {
     title: { text: "Form", position: "start" },
     cancelButton: { label: "Cancel", fn: () => {} },
     confirmButton: { label: "Submit", fn: () => {} },
+    onSubmit: () => {},
     inputs: [
       { id: "input 1", label: "input 1", name: "input1" },
       {
@@ -21,7 +22,11 @@ export const Common: Story = {
         label: "input 2",
         name: "input2",
         icon: "user",
-        validation: { delay: 500, fn: (value: string) => value === "aaaa" },
+        validation: {
+          delay: 500,
+          fn: (value: string) => value === "test",
+          message: "Must be equal to 'test'",
+        },
       },
     ],
   },

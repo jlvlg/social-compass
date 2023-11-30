@@ -6,8 +6,10 @@
   gap: 24px;
 
   h1 {
-    @include t.formtitle;
+    @include t.poppins;
 
+    font-size: 2rem;
+    font-weight: 400;
     color: white;
     margin: 0;
     padding-inline: 8px;

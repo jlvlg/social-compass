@@ -37,8 +37,10 @@
     border: none;
     background: none;
 
-    @include t.input;
+    @include t.poppins;
 
+    font-size: 1rem;
+    font-weight: 400;
     color: c.$white;
 
     &:focus {
@@ -53,4 +55,16 @@
 
 .invalid {
   border-color: c.$yellow;
+}
+
+.toplevel {
+  @include t.poppins;
+
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: c.$yellow;
+  text-align: center;
 }

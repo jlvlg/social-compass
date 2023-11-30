@@ -6,47 +6,41 @@ import { IconType } from "@assets/icons";
 
 export type Props = {
   title: { text: string; position: "center" | "start" | "end" };
-  confirmButton?: { label: string; fn: () => void };
+  confirmButton: { label: string; fn: () => void };
   cancelButton?: { label: string; fn: () => void };
   inputs: {
     id: any;
     label: string;
     icon?: IconType;
     name: string;
-    validation?: { delay: number | "submit"; fn: (value: string) => boolean };
+    validation?: {
+      delay: number | "submit";
+      fn: (value: string) => boolean;
+      message?: string;
+    };
   }[];
   onSubmit: (data: { [name: string]: FormDataEntryValue }) => void;
 };
 
 function Form({ title, confirmButton, cancelButton, inputs, onSubmit }: Props) {
-  const refs = useRef<({ validate: () => void } | null)[]>([]);
-  const [valid, setValid] = useState(true);
-
-  const mappedValidations = inputs.map((input) =>
-    input.validation
-      ? {
-          ...input.validation,
-          fn: (value: string) => {
-            const result = input.validation!.fn(value);
-            setValid(result);
-            return result;
-          },
-        }
-      : undefined,
-  );
+  const refs = useRef<({ validate: () => boolean } | null)[]>([]);
 
   return (
     <form
+      role="form"
       className={styles.form}
       onSubmit={(evt) => {
         evt.preventDefault();
-        for (const ref of refs.current) {
-          if (ref) ref.validate();
-        }
+        let valid = true;
+        for (const ref of refs.current)
+          if (ref && !ref.validate()) valid = false;
+
         if (valid) {
           onSubmit(
             Object.fromEntries(new FormData(evt.currentTarget).entries()),
           );
+        } else {
+          onSubmit({});
         }
       }}
     >
@@ -56,7 +50,6 @@ function Form({ title, confirmButton, cancelButton, inputs, onSubmit }: Props) {
           ref={(ref) => (refs.current[index] = ref)}
           key={input.id}
           {...input}
-          validation={mappedValidations[index]}
         />
       ))}
       {cancelButton && (

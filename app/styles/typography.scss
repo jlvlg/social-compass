@@ -1,25 +1,7 @@
 @use "fonts" as f;
 
-@mixin input() {
+@mixin poppins() {
   font-family: f.$font-poppins;
-  font-size: 1rem;
-  font-weight: 400;
-  font-style: normal;
-  line-height: normal;
-}
-
-@mixin button() {
-  font-family: f.$font-poppins;
-  font-size: 1rem;
-  font-weight: 600;
-  font-style: normal;
-  line-height: normal;
-}
-
-@mixin formtitle() {
-  font-family: f.$font-poppins;
-  font-size: 2rem;
-  font-weight: 400;
   font-style: normal;
   line-height: normal;
 }

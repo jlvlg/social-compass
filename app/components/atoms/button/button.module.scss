@@ -11,7 +11,10 @@
   color: c.$white;
   border-radius: 46px;
 
-  @include t.button;
+  @include t.poppins;
+
+  font-size: 1rem;
+  font-weight: 600;
 }
 
 .primary {
