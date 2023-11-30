@@ -3,7 +3,7 @@ import Input from "./";
 
 const meta: Meta<typeof Input> = {
   component: Input,
-  args: { placeholder: "placeholder" },
+  args: { label: "placeholder", name: "placeholder" },
 };
 
 export default meta;

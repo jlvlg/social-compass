@@ -12,13 +12,17 @@ type Story = StoryObj<typeof Form>;
 export const Common: Story = {
   args: {
     title: { text: "Form", position: "start" },
-    cancelButton: "Cancel",
-    confirmButton: "Submit",
-    children: (
-      <>
-        <Input placeholder="input 1" />
-        <Input placeholder="input 2" icon="user" />
-      </>
-    ),
+    cancelButton: { label: "Cancel", fn: () => {} },
+    confirmButton: { label: "Submit", fn: () => {} },
+    inputs: [
+      { id: "input 1", label: "input 1", name: "input1" },
+      {
+        id: "input 2",
+        label: "input 2",
+        name: "input2",
+        icon: "user",
+        validation: { delay: 500, fn: (value: string) => value === "aaaa" },
+      },
+    ],
   },
 };

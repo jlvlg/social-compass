@@ -15,6 +15,7 @@
   border-radius: 46px;
   border: 2px solid c.$white;
   cursor: text;
+  transition: border 200ms ease;
 
   label {
     position: absolute;
@@ -22,6 +23,7 @@
     color: c.$gray-300;
     cursor: text;
     pointer-events: none;
+    inset-inline-start: map.get(s.$sizes, "lg") + 2px;
   }
 
   svg {
