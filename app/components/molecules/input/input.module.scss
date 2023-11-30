@@ -10,6 +10,7 @@
   padding-inline: map.get(s.$sizes, "lg");
   padding-block: map.get(s.$sizes, "sm");
   align-items: center;
+  margin: 0;
   gap: map.get(s.$sizes, "lg");
   border-radius: 46px;
   border: 2px solid c.$white;

@@ -1,0 +1,15 @@
+@use "@styles/typography" as t;
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  h1 {
+    @include t.formtitle;
+
+    color: white;
+    margin: 0;
+    padding-inline: 8px;
+  }
+}

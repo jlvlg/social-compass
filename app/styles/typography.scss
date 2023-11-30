@@ -15,3 +15,11 @@
   font-style: normal;
   line-height: normal;
 }
+
+@mixin formtitle() {
+  font-family: f.$font-poppins;
+  font-size: 2rem;
+  font-weight: 400;
+  font-style: normal;
+  line-height: normal;
+}

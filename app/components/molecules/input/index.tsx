@@ -21,10 +21,7 @@ function Input({ validation, icon, placeholder }: Props) {
 
     if (validation) {
       if (typeof validation.delay === "number")
-        timer = setTimeout(
-          () => setValid(validation.fn(value)),
-          validation.delay,
-        );
+        timer = setTimeout(validate, validation.delay);
     }
 
     return () => {
@@ -34,6 +31,10 @@ function Input({ validation, icon, placeholder }: Props) {
 
   function onChange(event: React.ChangeEvent<HTMLInputElement>) {
     setValue(event.target.value);
+  }
+
+  function validate() {
+    if (validation) setValid(validation.fn(value));
   }
 
   return (
@@ -46,6 +47,7 @@ function Input({ validation, icon, placeholder }: Props) {
         id={inputId}
         value={value}
         type="text"
+        onSubmit={validate}
         onChange={(event) => onChange(event)}
       />
       <label style={{ opacity: value ? 0 : 1 }} htmlFor={inputId}>
