@@ -1,0 +1,48 @@
+@use "@styles/colors" as c;
+@use "@styles/sizings" as s;
+@use "sass:map";
+
+.layout {
+  background: c.$gradient-background;
+  block-size: 100%;
+  display: flex;
+}
+
+.form-container {
+  block-size: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-inline: map.get(s.$sizes, "lg");
+  flex: 1;
+
+  > p {
+    max-inline-size: 400px;
+  }
+}
+
+.image-container {
+  display: none;
+  block-size: 100%;
+  position: relative;
+
+  @include s.screen("tablet") {
+    flex-basis: 50%;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.laptop {
+  object-fit: cover;
+  object-position: center;
+  position: absolute;
+  max-block-size: 100%;
+  max-inline-size: 100%;
+}
+
+.compass {
+  position: absolute;
+  block-size: auto;
+  inline-size: 330px;
+}

@@ -1,0 +1,12 @@
+@use "@styles/typography" as t;
+@use "@styles/colors" as c;
+
+.message {
+  @include t.poppins;
+
+  font-size: 1rem;
+  font-weight: 500;
+  color: c.$yellow;
+  text-align: center;
+  margin: 0;
+}

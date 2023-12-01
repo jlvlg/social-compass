@@ -1,62 +1,47 @@
 import { render, screen } from "@testing-library/react";
 import { userEvent } from "@testing-library/user-event";
 import Form from "./";
-import React from "react";
 
 describe("Test if form", () => {
+  let submitted: any = {};
+
   describe("submits data correctly", () => {
-    test("when valid", async () => {
+    beforeEach(() => {
       render(
         <Form
           title={{ text: "test", position: "start" }}
-          onSubmit={(data) =>
-            expect(data).toStrictEqual({ input1: "", input2: "test" })
-          }
-          inputs={[
-            { id: "input1", label: "Input 1", name: "input1" },
-            {
-              id: "input2",
-              label: "Input 2",
-              name: "input2",
-              validation: { delay: "submit", fn: (value) => value === "test" },
-            },
+          onSubmit={(data) => (submitted = data)}
+          inputs={{
+            input1: { label: "Input 1" },
+            input2: { label: "Input 2" },
+          }}
+          confirmButton={{ label: "Confirm" }}
+          validations={[
+            { inputs: ["input2"], fn: (values) => values.input2 === "test" },
           ]}
-          confirmButton={{ label: "Confirm", fn: () => {} }}
+          render={["input1", "input2"]}
         />,
       );
+    });
 
+    test("when valid", async () => {
       const form = screen.getByRole("form");
       const input2 = screen.getByRole("textbox", { name: "Input 2" });
       const button = screen.getByRole("button");
 
       await userEvent.type(input2, "test");
       await userEvent.click(button);
+      expect(submitted).toStrictEqual({ input1: "", input2: "test" });
     });
 
     test("when invalid", async () => {
-      render(
-        <Form
-          title={{ text: "test", position: "start" }}
-          onSubmit={(data) => expect(data).toStrictEqual({})}
-          inputs={[
-            { id: "input1", label: "Input 1", name: "input1" },
-            {
-              id: "input2",
-              label: "Input 2",
-              name: "input2",
-              validation: { delay: "submit", fn: (value) => value === "test" },
-            },
-          ]}
-          confirmButton={{ label: "Confirm", fn: () => {} }}
-        />,
-      );
-
       const form = screen.getByRole("form");
       const input2 = screen.getByRole("textbox", { name: "Input 2" });
       const button = screen.getByRole("button");
 
       await userEvent.type(input2, "wrong text");
       await userEvent.click(button);
+      expect(submitted).toStrictEqual({});
     });
   });
 });

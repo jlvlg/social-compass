@@ -1,0 +1,23 @@
+@use "@styles/colors" as c;
+@use "@styles/typography" as t;
+@use "@styles/sizings" as s;
+@use "sass:map";
+
+.container {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: map.get(s.$sizes, "xxxs");
+  color: c.$white;
+  font-size: 20px;
+  font-weight: 400;
+
+  @include t.poppins;
+
+  em {
+    font-size: 64px;
+    font-weight: 500;
+
+    @include t.poppins;
+  }
+}

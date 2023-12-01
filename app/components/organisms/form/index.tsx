@@ -1,69 +1,99 @@
-import React, { useEffect, useRef, useState } from "react";
-import styles from "./form.module.scss";
+import { IconType } from "@/app/assets/icons";
 import Button from "@components/atoms/button";
-import Input from "@components/molecules/input";
-import { IconType } from "@assets/icons";
+import ErrorMessage from "@components/atoms/error-message";
+import Input from "@components/atoms/input";
+import { FormEvent } from "react";
+import { useImmer } from "use-immer";
+import styles from "./form.module.scss";
 
 export type Props = {
   title: { text: string; position: "center" | "start" | "end" };
-  confirmButton: { label: string; fn: () => void };
-  cancelButton?: { label: string; fn: () => void };
-  inputs: {
-    id: any;
-    label: string;
-    icon?: IconType;
-    name: string;
-    validation?: {
-      delay: number | "submit";
-      fn: (value: string) => boolean;
-      message?: string;
-    };
+  confirmButton: { label: string; fn?: () => void };
+  cancelButton?: { label: string; fn?: () => void };
+  validations?: {
+    inputs: string[];
+    fn: (values: { [key: string]: string }) => boolean;
   }[];
+  inputs: Record<
+    string,
+    {
+      icon?: IconType;
+      label: string;
+      type?: string;
+    }
+  >;
+  render: (string | { name: string; message: string })[];
   onSubmit: (data: { [name: string]: FormDataEntryValue }) => void;
 };
 
-function Form({ title, confirmButton, cancelButton, inputs, onSubmit }: Props) {
-  const refs = useRef<({ validate: () => boolean } | null)[]>([]);
+function Form({
+  title,
+  confirmButton,
+  cancelButton,
+  onSubmit,
+  validations,
+  inputs,
+  render,
+}: React.PropsWithChildren<Props>) {
+  const [valid, setValid] = useImmer(
+    Object.fromEntries(Object.keys(inputs).map((i) => [i, true])),
+  );
+
+  function handleSubmit(evt: FormEvent<HTMLFormElement>) {
+    evt.preventDefault();
+
+    const data = new FormData(evt.currentTarget);
+    let isFormValid = true;
+
+    if (validations)
+      for (const validation of validations) {
+        const values = Object.fromEntries(
+          validation.inputs.map((i) => [i, (data.get(i) as string) || ""]),
+        );
+        const result = validation.fn(values);
+        if (!result) {
+          isFormValid = false;
+          setValid((draft: any) => {
+            for (const input of validation.inputs) {
+              draft[input] = result;
+            }
+          });
+        }
+      }
+
+    if (isFormValid) {
+      onSubmit(Object.fromEntries(new FormData(evt.currentTarget).entries()));
+    } else onSubmit({});
+  }
 
   return (
     <form
       role="form"
       className={styles.form}
-      onSubmit={(evt) => {
-        evt.preventDefault();
-        let valid = true;
-        for (const ref of refs.current)
-          if (ref && !ref.validate()) valid = false;
-
-        if (valid) {
-          onSubmit(
-            Object.fromEntries(new FormData(evt.currentTarget).entries()),
-          );
-        } else {
-          onSubmit({});
-        }
-      }}
+      onSubmit={(evt) => handleSubmit(evt)}
     >
-      <h1>{title.text}</h1>
-      {inputs.map((input, index) => (
-        <Input
-          ref={(ref) => (refs.current[index] = ref)}
-          key={input.id}
-          {...input}
-        />
-      ))}
+      <h1 style={{ textAlign: title.position }}>{title.text}</h1>
+      {render.map((i) => {
+        if (typeof i === "string") {
+          return <Input key={i} name={i} {...inputs[i]} isValid={valid[i]} />;
+        } else if (!valid[i.name]) {
+          return (
+            <ErrorMessage key={"message" + i.name}>{i.message}</ErrorMessage>
+          );
+        }
+      })}
       {cancelButton && (
         <Button
           type="secondary"
           label={cancelButton.label}
-          onClick={cancelButton.fn}
+          onClick={cancelButton.fn || (() => {})}
         />
       )}
       {confirmButton && (
         <Button
           type="primary"
           label={confirmButton.label}
-          onClick={confirmButton.fn}
+          onClick={confirmButton.fn || (() => {})}
         />
       )}
     </form>

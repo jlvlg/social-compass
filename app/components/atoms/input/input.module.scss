@@ -56,15 +56,3 @@
 .invalid {
   border-color: c.$yellow;
 }
-
-.toplevel {
-  @include t.poppins;
-
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  font-size: 1rem;
-  font-weight: 500;
-  color: c.$yellow;
-  text-align: center;
-}

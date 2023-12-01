@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import Form from ".";
-import Input from "@components/molecules/input";
 
 const meta: Meta<typeof Form> = {
   component: Form,
@@ -15,19 +14,14 @@ export const Common: Story = {
     cancelButton: { label: "Cancel", fn: () => {} },
     confirmButton: { label: "Submit", fn: () => {} },
     onSubmit: () => {},
-    inputs: [
-      { id: "input 1", label: "input 1", name: "input1" },
-      {
-        id: "input 2",
-        label: "input 2",
-        name: "input2",
-        icon: "user",
-        validation: {
-          delay: 500,
-          fn: (value: string) => value === "test",
-          message: "Must be equal to 'test'",
-        },
-      },
+    validations: [
+      { inputs: ["test2"], fn: (values) => values.test2 === "teste" },
+    ],
+    inputs: { test1: { label: "Teste 1" }, test2: { label: "Teste 2" } },
+    render: [
+      "test1",
+      "test2",
+      { name: "test2", message: "Teste 2 must be equal to 'test'" },
     ],
   },
 };

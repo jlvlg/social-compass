@@ -14,8 +14,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="pt-BR">
-      <body className={fonts}>{children}</body>
+    <html lang="pt-BR" style={{ blockSize: "100%" }}>
+      <body className={fonts} style={{ blockSize: "100%" }}>
+        {children}
+      </body>
     </html>
   );
 }

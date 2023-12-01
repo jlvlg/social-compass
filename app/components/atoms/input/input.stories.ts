@@ -10,12 +10,8 @@ export default meta;
 type Story = StoryObj<typeof Input>;
 
 export const Common: Story = {};
-export const Validation: Story = {
+export const Invalid: Story = {
   args: {
-    validation: {
-      delay: 500,
-      fn: (value) => value === "test",
-      message: "Must be equal to 'test'",
-    },
+    isValid: false,
   },
 };

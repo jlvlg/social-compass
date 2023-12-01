@@ -13,8 +13,17 @@ $sizes: (
   "xxxl": 42px,
   "xxxxl": 48px,
 );
+$screen-sizes: (
+  "tablet": 900px,
+);
 
 @mixin box($size) {
   inline-size: map.get($sizes, $size);
   block-size: map.get($sizes, $size);
+}
+
+@mixin screen($size) {
+  @media screen and (min-width: map.get($screen-sizes, $size)) {
+    @content;
+  }
 }
