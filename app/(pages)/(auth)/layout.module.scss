@@ -16,8 +16,11 @@
   padding-inline: map.get(s.$sizes, "lg");
   flex: 1;
 
-  > p {
+  > div {
     max-inline-size: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: map.get(s.$sizes, "lg");
   }
 }
 

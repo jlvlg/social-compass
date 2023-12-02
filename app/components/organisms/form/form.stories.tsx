@@ -14,14 +14,15 @@ export const Common: Story = {
     cancelButton: { label: "Cancel", fn: () => {} },
     confirmButton: { label: "Submit", fn: () => {} },
     onSubmit: () => {},
-    validations: [
-      { inputs: ["test2"], fn: (values) => values.test2 === "teste" },
-    ],
+    validations: {
+      test2: { inputs: ["test2"], fn: (values) => values.test2 === "teste" },
+    },
+
     inputs: { test1: { label: "Teste 1" }, test2: { label: "Teste 2" } },
     render: [
       "test1",
       "test2",
-      { name: "test2", message: "Teste 2 must be equal to 'test'" },
+      { condition: "test2", message: "Teste 2 must be equal to 'test'" },
     ],
   },
 };

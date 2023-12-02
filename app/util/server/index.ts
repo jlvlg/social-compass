@@ -1,23 +1,23 @@
-import axios, { Axios } from "axios";
-
 class server {
-  private axios = new Axios({
-    baseURL: "https://social-compass-server.onrender.com",
-    headers: { "Content-Type": "application/json" },
-  });
+  private baseURL = new URL("https://social-compass-server.onrender.com");
+  private headers = { "Content-Type": "application/json" };
+
+  async post<T extends {}>(path: string | URL, body: T) {
+    const res = await fetch(new URL(path, this.baseURL), {
+      method: "POST",
+      headers: this.headers,
+      body: JSON.stringify(body),
+    });
+
+    const json = await res.json();
+
+    if (!res.ok) throw { message: json.message, status: res.status };
+
+    return json;
+  }
 
   async signIn(username: string, password: string) {
-    try {
-      const res = await this.axios.post(
-        "/auth/login",
-        JSON.stringify({ username, password }),
-      );
-      console.log(res.data);
-
-      return res.data;
-    } catch (error) {
-      console.log(error);
-    }
+    return await this.post("/auth/login", { username, password });
   }
 }
 

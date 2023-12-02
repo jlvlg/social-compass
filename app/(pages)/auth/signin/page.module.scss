@@ -1,9 +1,0 @@
-@use "@styles/sizings" as s;
-@use "sass:map";
-
-.container {
-  max-inline-size: 400px;
-  display: flex;
-  flex-direction: column;
-  gap: map.get(s.$sizes, "lg");
-}

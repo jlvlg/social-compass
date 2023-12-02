@@ -16,9 +16,12 @@ describe("Test if form", () => {
             input2: { label: "Input 2" },
           }}
           confirmButton={{ label: "Confirm" }}
-          validations={[
-            { inputs: ["input2"], fn: (values) => values.input2 === "test" },
-          ]}
+          validations={{
+            input2: {
+              inputs: ["input2"],
+              fn: (values) => values.input2 === "test",
+            },
+          }}
           render={["input1", "input2"]}
         />,
       );

@@ -1,4 +1,5 @@
 @use "@styles/typography" as t;
+@use "@styles/colors" as c;
 
 .form {
   display: flex;
@@ -14,4 +15,15 @@
     margin: 0;
     padding-inline: 8px;
   }
+}
+
+.message {
+  @include t.poppins;
+
+  overflow: hidden;
+  font-size: 1rem;
+  font-weight: 500;
+  color: c.$yellow;
+  text-align: center;
+  margin: 0;
 }
