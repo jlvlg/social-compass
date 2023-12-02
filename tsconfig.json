@@ -26,7 +26,8 @@
       "@assets/*": ["./app/assets/*"],
       "@api/*": ["./app/api/*"],
       "@util/*": ["./app/util/*"],
-      "@store": ["./app/store"]
+      "@store": ["./app/store"],
+      "@types": ["./app/util/types"]
     }
   },
   "include": [

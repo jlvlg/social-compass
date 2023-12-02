@@ -2,7 +2,7 @@ import { Provider } from "@store";
 import fonts from "@styles/fonts";
 import "@styles/fonts.scss";
 import type { Metadata } from "next";
-import "normalize.css";
+import "reset-css";
 
 export const metadata: Metadata = {
   title: "Social Compass",

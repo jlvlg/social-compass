@@ -1,7 +1,33 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import server from "@util/server";
 import { User } from "@util/types";
+import { Thunk } from "..";
 
 const initialState: User = {};
+
+function saveUser(): Thunk {
+  return (dispatch, getState) => {
+    const user = getState().user;
+    localStorage.setItem(
+      "user",
+      JSON.stringify({ id: user.id, token: user.token }),
+    );
+  };
+}
+
+const loadUser = createAsyncThunk(
+  "user/loadUser",
+  async (savedUser: any, thunkAPI) => {
+    if (Object.keys(savedUser).length > 0) {
+      const user = await server.getUserByID(
+        savedUser.id,
+        savedUser.token,
+        thunkAPI.signal,
+      );
+      return { ...user, token: savedUser.token };
+    }
+  },
+);
 
 const userSlice = createSlice({
   name: "user",
@@ -21,7 +47,24 @@ const userSlice = createSlice({
       if (payload.occupation) state.occupation = payload.occupation;
     },
   },
+  extraReducers: (builder) => {
+    builder.addCase(loadUser.fulfilled, (state, { payload }) => {
+      if (payload) {
+        state.token = payload.token;
+        state.id = payload.id;
+        state.name = payload.name;
+        state.username = payload.username;
+        state.email = payload.email;
+        state.birthdate = payload.birthdate;
+        if (payload.image) state.image = payload.image;
+        if (payload.sex) state.sex = payload.sex;
+        if (payload.address) state.address = payload.address;
+        if (payload.phone) state.phone = payload.phone;
+        if (payload.occupation) state.occupation = payload.occupation;
+      }
+    });
+  },
 });
 
-export const actions = { ...userSlice.actions };
+export const actions = { ...userSlice.actions, saveUser, loadUser };
 export const reducer = userSlice.reducer;

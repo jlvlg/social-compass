@@ -1,0 +1,65 @@
+@use "@styles/sizings" as s;
+@use "@styles/colors" as c;
+@use "@styles/typography" as t;
+@use "sass:map";
+
+.post {
+  @include t.poppins;
+
+  display: flex;
+  flex-direction: column;
+  padding-block: map.get(s.$sizes, "xs");
+  padding-inline: map.get(s.$sizes, "xs");
+  gap: map.get(s.$sizes, "xs");
+  color: white;
+  font-size: 0.75rem;
+
+  > img {
+    margin-inline: - map.get(s.$sizes, "xs");
+    object-fit: cover;
+    object-position: center;
+  }
+}
+
+.author {
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  gap: map.get(s.$sizes, "xs");
+}
+
+.author-image {
+  block-size: map.get(s.$sizes, "xxl");
+  inline-size: map.get(s.$sizes, "xxl");
+}
+
+.date {
+  display: flex;
+  color: c.$gray-300;
+  align-items: center;
+  font-size: 0.75rem;
+  gap: map.get(s.$sizes, "xxxs");
+
+  svg {
+    block-size: 0.75rem;
+  }
+
+  span {
+    font-weight: 500;
+    color: white;
+  }
+}
+
+.interactions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.comments {
+  @include t.poppins;
+
+  display: flex;
+  flex-direction: column;
+  gap: map.get(s.$sizes, "xs");
+  font-size: 0.75rem;
+}

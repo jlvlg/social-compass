@@ -1,17 +1,16 @@
 "use client";
 
-import Welcome from "@components/atoms/welcome";
-import Form from "@components/organisms/form";
+import Form from "@components/form";
+import Welcome from "@components/welcome";
 import { actions, useDispatch } from "@store";
 import server from "@util/server";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import styles from "../layout.module.scss";
 
-export type Props = {};
+export type Props = { onSwitch: () => void };
 
-function RegisterPage({}: Props) {
+function Register({ onSwitch }: Props) {
   const [uniqueFailed, setUniqueFailed] = useState({
     username: false,
     email: false,
@@ -28,7 +27,10 @@ function RegisterPage({}: Props) {
     const newUniqueFailed = { username: false, email: false };
 
     try {
-      dispatch(actions.user.setUser(await server.register(formatted)));
+      const abort = new AbortController();
+      const res = await server.register(formatted, abort.signal);
+      dispatch(actions.user.setUser({ ...res.user, token: res.token }));
+      dispatch(actions.user.saveUser());
       router.push("/");
     } catch (error: any) {
       switch (error.status) {
@@ -164,10 +166,10 @@ function RegisterPage({}: Props) {
         ]}
       />
       <p className={styles.link}>
-        Já possui uma conta? <Link href="/signin">Faça Login</Link>
+        Já possui uma conta? <button onClick={onSwitch}>Faça login</button>
       </p>
     </>
   );
 }
 
-export default RegisterPage;
+export default Register;

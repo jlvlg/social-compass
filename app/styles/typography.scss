@@ -5,3 +5,9 @@
   font-style: normal;
   line-height: normal;
 }
+
+@mixin inter() {
+  font-family: f.$font-inter;
+  font-style: normal;
+  line-height: normal;
+}

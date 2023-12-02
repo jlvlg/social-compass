@@ -1,0 +1,38 @@
+@use "@styles/sizings" as s;
+@use "@styles/typography" as t;
+@use "@styles/colors" as c;
+@use "sass:map";
+
+.interaction {
+  @include t.inter;
+
+  display: flex;
+  color: c.$gray-200;
+  align-items: center;
+  gap: 8px;
+  block-size: map.get(s.$sizes, "xs");
+  font-size: 0.875rem;
+  transition: color 100ms ease;
+  cursor: pointer;
+
+  span {
+    transition: background 100ms ease;
+    border-radius: map.get(s.$sizes, "xs");
+    background: #27282f;
+    padding-inline: map.get(s.$sizes, "xxxs");
+    padding-block: 2px;
+    font-size: 0.5rem;
+  }
+
+  svg {
+    block-size: map.get(s.$sizes, "xs");
+  }
+
+  &:hover {
+    color: c.$gray-100;
+
+    span {
+      background: #3b3c44;
+    }
+  }
+}

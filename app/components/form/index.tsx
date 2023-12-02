@@ -1,10 +1,10 @@
 "use client";
 
 import { IconType } from "@/app/assets/icons";
-import Button from "@components/atoms/button";
-import Input from "@components/atoms/input";
 import { AnimatePresence, motion } from "framer-motion";
 import { FormEvent, useState } from "react";
+import Button from "../button";
+import Input from "../input";
 import styles from "./form.module.scss";
 
 type Validations = Record<

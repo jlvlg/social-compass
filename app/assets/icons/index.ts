@@ -1,19 +1,23 @@
-import article from "@assets/icons/article.svg";
-import at from "@assets/icons/at.svg";
-import bell from "@assets/icons/bell.svg";
-import calendar from "@assets/icons/calendar.svg";
-import coin from "@assets/icons/coin.svg";
-import dna from "@assets/icons/dna.svg";
-import fingerprint from "@assets/icons/fingerprint.svg";
-import globe from "@assets/icons/globe.svg";
-import id from "@assets/icons/id.svg";
-import image from "@assets/icons/image.svg";
-import indent from "@assets/icons/indent.svg";
-import lock from "@assets/icons/lock.svg";
-import mappin from "@assets/icons/mappin.svg";
-import phone from "@assets/icons/phone.svg";
-import shield from "@assets/icons/shield.svg";
-import user from "@assets/icons/user.svg";
+import article from "./article.svg";
+import at from "./at.svg";
+import bell from "./bell.svg";
+import calendar from "./calendar.svg";
+import clock from "./clock.svg";
+import coin from "./coin.svg";
+import comment from "./comment.svg";
+import dna from "./dna.svg";
+import fingerprint from "./fingerprint.svg";
+import globe from "./globe.svg";
+import id from "./id.svg";
+import image from "./image.svg";
+import indent from "./indent.svg";
+import like from "./like.svg";
+import lock from "./lock.svg";
+import mappin from "./mappin.svg";
+import phone from "./phone.svg";
+import share from "./share.svg";
+import shield from "./shield.svg";
+import user from "./user.svg";
 
 const Icons = {
   article,
@@ -32,6 +36,10 @@ const Icons = {
   phone,
   shield,
   user,
+  clock,
+  like,
+  comment,
+  share,
 };
 
 export type IconType = keyof typeof Icons;

@@ -1,24 +1,26 @@
 "use client";
 
-import Welcome from "@components/atoms/welcome";
-import Form from "@components/organisms/form";
+import Form from "@components/form";
+import Welcome from "@components/welcome";
 import { actions, useDispatch } from "@store";
 import server from "@util/server";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import styles from "../layout.module.scss";
 
-export type Props = {};
+export type Props = { onSwitch: () => void };
 
-function SignInPage({}: Props) {
+function Login({ onSwitch }: Props) {
   const [error, setError] = useState(false);
   const dispatch = useDispatch();
   const router = useRouter();
 
   async function signIn(username: string, password: string) {
     try {
-      dispatch(actions.user.setUser(await server.signIn(username, password)));
+      const abort = new AbortController();
+      const res = await server.signIn(username, password, abort.signal);
+      dispatch(actions.user.setUser({ ...res.user, token: res.token }));
+      dispatch(actions.user.saveUser());
       setError(false);
       router.push("/");
     } catch (error: any) {
@@ -80,10 +82,10 @@ function SignInPage({}: Props) {
         ]}
       />
       <p className={styles.link}>
-        Novo por aqui? <Link href="/register">Registre-se</Link>
+        Novo por aqui? <button onClick={onSwitch}>Registre-se</button>
       </p>
     </>
   );
 }
 
-export default SignInPage;
+export default Login;

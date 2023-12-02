@@ -11,3 +11,32 @@ export interface User {
   occupation?: string;
   token?: string;
 }
+
+export interface Comment {
+  id: string;
+  content: string;
+  postId: string;
+  createdAt: string;
+  updatedAt: string;
+  author: {
+    image?: string;
+    name: string;
+    id: string;
+  };
+}
+
+export interface Post {
+  id: string;
+  text: string;
+  location?: string;
+  likes: string;
+  image?: string;
+  createdAt: string;
+  updatedAt: string;
+  author: {
+    image?: string;
+    name: string;
+    id: string;
+  };
+  comments: Comment[];
+}

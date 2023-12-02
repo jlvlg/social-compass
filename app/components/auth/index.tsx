@@ -3,16 +3,28 @@
 import compass from "@assets/compass-negativo.png";
 import sideImage from "@assets/side-image.jpeg";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import styles from "./layout.module.scss";
+import Login from "./login";
+import Register from "./register";
 
-export type Props = {};
+function AuthLayout() {
+  const [login, setLogin] = useState(true);
 
-function AuthLayout({ children }: React.PropsWithChildren) {
+  function toggleLogin() {
+    setLogin((prev) => !prev);
+  }
+
   return (
     <main className={styles.layout}>
       <div className={styles["form-container"]}>
-        <div>{children}</div>
+        <div>
+          {login ? (
+            <Login onSwitch={toggleLogin} />
+          ) : (
+            <Register onSwitch={toggleLogin} />
+          )}
+        </div>
       </div>
       <div className={styles["image-container"]}>
         <Image

@@ -1,6 +1,5 @@
 "use client";
 import getIcon, { IconType } from "@assets/icons";
-import Inputmask from "inputmask";
 import React, { useEffect, useId, useRef, useState } from "react";
 import styles from "./input.module.scss";
 
@@ -20,9 +19,10 @@ function Input({ icon, label, name, isValid = true, type, mask }: Props) {
   const Icon = icon ? getIcon(icon) : undefined;
 
   useEffect(() => {
+    const inputmask = require("inputmask");
     let instance: Inputmask.Instance | undefined;
 
-    if (mask && inputRef.current && navigator)
+    if (mask && inputRef.current)
       instance = Inputmask({ ...mask, jitMasking: true }).mask(
         inputRef.current,
       );
