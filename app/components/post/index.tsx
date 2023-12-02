@@ -1,9 +1,8 @@
 import getIcon from "@/app/assets/icons";
 import { Post } from "@/app/util/types";
 import dayjs from "@util/dates";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
-import Card from "../card";
 import Comment from "../comment";
 import Interaction from "../interaction";
 import UserImage from "../userimage";
@@ -62,55 +61,66 @@ function PostComponent({}: Props) {
   const Clock = getIcon("clock");
 
   return (
-    <Card>
-      <motion.div className={styles.post}>
-        <div className={styles.author}>
-          <UserImage user={post.author} className={styles["author-image"]} />
-          <div>
-            {post.author.name}
-            <div className={styles.date}>
-              <Clock />
-              {dayjs().to(post.createdAt)}
-              {post.location && " em "}
-              <span>{post.location}</span>
-            </div>
+    <div className={styles.post}>
+      <div className={styles.author}>
+        <UserImage user={post.author} className={styles["author-image"]} />
+        <div>
+          {post.author.name}
+          <div className={styles.date}>
+            <Clock />
+            {dayjs().to(post.createdAt)}
+            {post.location && " em "}
+            <span>{post.location}</span>
           </div>
         </div>
-        {post.text}
-        {post.image && <img src={post.image} />}
-        <div className={styles.interactions}>
-          <Interaction icon="like" text="Curtiu" interactions={+post.likes} />
-          <Interaction
-            icon="comment"
-            text="Comentários"
-            interactions={post.comments.length}
-          />
-          <Interaction icon="share" text="Compartilhar" />
-        </div>
-        {post.comments.length > 0 && (
-          <>
-            <ul className={styles.comments}>
+      </div>
+      {post.text}
+      {post.image && <img src={post.image} />}
+      <div className={styles.interactions}>
+        <Interaction icon="like" text="Curtiu" interactions={+post.likes} />
+        <Interaction
+          icon="comment"
+          text="Comentários"
+          interactions={post.comments.length}
+        />
+        <Interaction icon="share" text="Compartilhar" />
+      </div>
+      {post.comments.length > 0 && (
+        <>
+          <ul className={styles.comments}>
+            <AnimatePresence>
               <li key="commentstitle">Todos os comentários</li>
               {post.comments
                 .filter((_, i) => showComments || i === 0)
                 .map((c, i) => (
-                  <li key={"comment" + c.id}>
+                  <motion.li
+                    layout
+                    variants={{
+                      hidden: { height: 0, marginBlock: "-8px" },
+                      visible: { height: "auto", marginBlock: 0 },
+                    }}
+                    style={{ overflow: "hidden" }}
+                    initial="hidden"
+                    animate="visible"
+                    exit="hidden"
+                    key={"comment" + c.id}
+                  >
                     <Comment comment={c} />
-                  </li>
+                  </motion.li>
                 ))}
-            </ul>
-            {post.comments.length > 1 && (
-              <button
-                key="showcomments"
-                onClick={() => setShowComments((prev) => !prev)}
-              >
-                {showComments ? "Esconder" : "Ver todos"} os comentários
-              </button>
-            )}
-          </>
-        )}
-      </motion.div>
-    </Card>
+            </AnimatePresence>
+          </ul>
+          {post.comments.length > 1 && (
+            <button
+              key="showcomments"
+              onClick={() => setShowComments((prev) => !prev)}
+            >
+              {showComments ? "Esconder" : "Ver todos"} os comentários
+            </button>
+          )}
+        </>
+      )}
+    </div>
   );
 }
 

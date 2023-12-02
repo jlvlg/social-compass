@@ -13,6 +13,9 @@
   gap: map.get(s.$sizes, "xs");
   color: white;
   font-size: 0.75rem;
+  border-radius: map.get(s.$sizes, "xs");
+  border: 2px solid c.$gray-600;
+  background: c.$gray-700;
 
   > img {
     margin-inline: - map.get(s.$sizes, "xs");
