@@ -1,3 +1,5 @@
+"use client";
+
 import { IconType } from "@/app/assets/icons";
 import Button from "@components/atoms/button";
 import Input from "@components/atoms/input";
@@ -26,6 +28,7 @@ export type Props = {
       label: string;
       type?: string;
       isValid?: boolean;
+      mask?: Inputmask.Options;
     }
   >;
   render: (string | { condition: string | boolean; message: string })[];
@@ -50,8 +53,6 @@ function Form({
     for (const validation of failedValidations)
       for (const input of validations[validation].inputs)
         if (valid[input]) valid[input] = false;
-
-  console.log(validations, failedValidations, valid);
 
   function handleSubmit(evt: FormEvent<HTMLFormElement>) {
     evt.preventDefault();
@@ -99,7 +100,10 @@ function Form({
                 key={i}
                 name={i}
                 {...inputs[i]}
-                isValid={inputs[i].isValid && valid[i]}
+                isValid={
+                  (inputs[i]?.isValid === undefined || inputs[i].isValid) &&
+                  valid[i]
+                }
               />
             );
           } else if (

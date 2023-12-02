@@ -1,3 +1,4 @@
+import { Provider } from "@store";
 import fonts from "@styles/fonts";
 import "@styles/fonts.scss";
 import type { Metadata } from "next";
@@ -15,7 +16,7 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" style={{ blockSize: "100%" }}>
       <body className={fonts} style={{ blockSize: "100%" }}>
-        {children}
+        <Provider>{children}</Provider>
       </body>
     </html>
   );

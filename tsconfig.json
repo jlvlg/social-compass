@@ -25,7 +25,8 @@
       "@tests/*": ["./app/tests/*"],
       "@assets/*": ["./app/assets/*"],
       "@api/*": ["./app/api/*"],
-      "@util/*": ["./app/util/*"]
+      "@util/*": ["./app/util/*"],
+      "@store": ["./app/store"]
     }
   },
   "include": [

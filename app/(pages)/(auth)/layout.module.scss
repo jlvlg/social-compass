@@ -1,5 +1,6 @@
 @use "@styles/colors" as c;
 @use "@styles/sizings" as s;
+@use "@styles/typography" as t;
 @use "sass:map";
 
 .layout {
@@ -48,4 +49,22 @@
   position: absolute;
   block-size: auto;
   inline-size: 330px;
+}
+
+.link {
+  @include t.poppins;
+
+  margin: 0;
+  color: white;
+  text-align: center;
+  font-size: 1rem;
+
+  a {
+    all: unset;
+    font-weight: 600;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
 }

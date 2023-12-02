@@ -1,13 +1,12 @@
-import React from "react";
 import styles from "./welcome.module.scss";
 
-export type Props = {};
+export type Props = { message: string };
 
-function Welcome({}: Props) {
+function Welcome({ message }: Props) {
   return (
     <p className={styles.container}>
       <em>Olá,</em>
-      Para continuar navegando de forma segura, efetue o login.
+      {message}
     </p>
   );
 }

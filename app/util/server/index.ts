@@ -2,11 +2,12 @@ class server {
   private baseURL = new URL("https://social-compass-server.onrender.com");
   private headers = { "Content-Type": "application/json" };
 
-  async post<T extends {}>(path: string | URL, body: T) {
+  async post<T extends {}>(path: string | URL, body: T, options?: any) {
     const res = await fetch(new URL(path, this.baseURL), {
       method: "POST",
       headers: this.headers,
       body: JSON.stringify(body),
+      ...options,
     });
 
     const json = await res.json();
@@ -17,7 +18,16 @@ class server {
   }
 
   async signIn(username: string, password: string) {
-    return await this.post("/auth/login", { username, password });
+    return await this.post(
+      "/auth/login",
+      { username, password },
+      { cache: "no-store" },
+    );
+  }
+
+  async register(values: Record<string, string>) {
+    const { signal } = new AbortController();
+    return await this.post("/auth/register", values), { cache: "no-store" };
   }
 }
 
