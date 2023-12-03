@@ -1,12 +1,11 @@
 @use "@styles/sizings" as s;
 @use "@styles/typography" as t;
-@use "sass:map";
 
 .comment {
   @include t.poppins;
 
   display: flex;
-  gap: map.get(s.$sizes, "xs");
+  gap: s.size("xs");
   font-size: 0.625rem;
   color: #d9d9d9;
 
@@ -16,7 +15,7 @@
 }
 
 .author-image {
-  block-size: map.get(s.$sizes, "lg");
-  min-inline-size: map.get(s.$sizes, "lg");
-  inline-size: map.get(s.$sizes, "lg");
+  @include s.box("lg");
+
+  min-inline-size: s.size("lg");
 }

@@ -1,9 +1,8 @@
 @use "@styles/sizings" as s;
 @use "@styles/colors" as c;
-@use "sass:map";
 
 .card {
-  border-radius: map.get(s.$sizes, "xs");
+  border-radius: s.size("xs");
   border: 2px solid c.$gray-600;
   background: c.$gray-700;
 }

@@ -6,6 +6,8 @@ import server from "@util/server";
 import { Post } from "@util/types";
 import { useEffect, useState } from "react";
 
+export const dynamic = "force-dynamic";
+
 export default function Home() {
   const user = useSelector((state) => state.user);
   const [posts, setPosts] = useState<Post[]>([]);

@@ -1,17 +1,16 @@
 @use "@styles/colors" as c;
 @use "@styles/sizings" as s;
 @use "@styles/typography" as t;
-@use "sass:map";
 
 .container {
   display: flex;
   justify-content: space-between;
   position: relative;
-  padding-inline: map.get(s.$sizes, "lg");
-  padding-block: map.get(s.$sizes, "sm");
+  padding-inline: s.size("lg");
+  padding-block: s.size("sm");
   align-items: center;
   margin: 0;
-  gap: map.get(s.$sizes, "lg");
+  gap: s.size("lg");
   border-radius: 46px;
   border: 2px solid c.$white;
   cursor: text;
@@ -21,9 +20,8 @@
     position: absolute;
     transition: color 100ms ease;
     color: c.$gray-300;
-    cursor: text;
     pointer-events: none;
-    inset-inline-start: map.get(s.$sizes, "lg") + 2px;
+    inset-inline-start: s.size("lg") + 2px;
   }
 
   svg {

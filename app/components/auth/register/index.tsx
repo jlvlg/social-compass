@@ -10,6 +10,8 @@ import styles from "../layout.module.scss";
 
 export type Props = { onSwitch: () => void };
 
+export const dynamic = "force-dynamic";
+
 function Register({ onSwitch }: Props) {
   const [uniqueFailed, setUniqueFailed] = useState({
     username: false,

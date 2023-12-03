@@ -1,11 +1,10 @@
 @use "@styles/colors" as c;
 @use "@styles/sizings" as s;
 @use "@styles/typography" as t;
-@use "sass:map";
 
 .button {
-  padding-inline: map.get(s.$sizes, "lg");
-  padding-block: map.get(s.$sizes, "xs");
+  padding-inline: s.size("lg");
+  padding-block: s.size("xs");
   inline-size: 100%;
   border: none;
   color: c.$white;

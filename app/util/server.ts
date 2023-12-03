@@ -1,4 +1,4 @@
-import { Post, User } from "../types";
+import { Post, User } from "./types";
 
 class server {
   private baseURL = new URL("https://social-compass-server.onrender.com");
@@ -73,9 +73,25 @@ class server {
     console.log("getposts sent");
     return (await this.get(
       "/posts",
-      { signal },
+      { signal, cache: "no-store" },
       { Authorization: "Bearer " + token },
     )) as Post[];
+  }
+
+  async postComment(
+    content: string,
+    authorId: string,
+    postId: string,
+    token: string,
+    signal?: AbortSignal,
+  ) {
+    console.log("postcomment sent");
+    return await this.post(
+      "/comments",
+      { content, authorId, postId },
+      { signal },
+      { Authorization: "Bearer " + token },
+    );
   }
 }
 

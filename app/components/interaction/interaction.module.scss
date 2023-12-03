@@ -1,7 +1,6 @@
 @use "@styles/sizings" as s;
 @use "@styles/typography" as t;
 @use "@styles/colors" as c;
-@use "sass:map";
 
 .interaction {
   @include t.inter;
@@ -10,22 +9,22 @@
   color: c.$gray-200;
   align-items: center;
   gap: 8px;
-  block-size: map.get(s.$sizes, "xs");
+  block-size: s.size("xs");
   font-size: 0.875rem;
   transition: color 100ms ease;
   cursor: pointer;
 
   span {
     transition: background 100ms ease;
-    border-radius: map.get(s.$sizes, "xs");
+    border-radius: s.size("xs");
     background: #27282f;
-    padding-inline: map.get(s.$sizes, "xxxs");
+    padding-inline: s.size("xxxs");
     padding-block: 2px;
     font-size: 0.5rem;
   }
 
   svg {
-    block-size: map.get(s.$sizes, "xs");
+    block-size: s.size("xs");
   }
 
   &:hover {
@@ -34,5 +33,13 @@
     span {
       background: #3b3c44;
     }
+  }
+}
+
+.active {
+  color: c.$yellow;
+
+  &:hover {
+    color: c.$orange;
   }
 }

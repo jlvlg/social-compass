@@ -27,3 +27,7 @@ $screen-sizes: (
     @content;
   }
 }
+
+@function size($size) {
+  @return map.get($sizes, $size);
+}

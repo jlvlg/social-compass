@@ -8,6 +8,8 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import styles from "../layout.module.scss";
 
+export const dynamic = "force-dynamic";
+
 export type Props = { onSwitch: () => void };
 
 function Login({ onSwitch }: Props) {
