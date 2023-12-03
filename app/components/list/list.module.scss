@@ -1,0 +1,49 @@
+@use "@styles/sizings" as s;
+@use "@styles/typography" as t;
+@use "@styles/colors" as c;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: s.size("md") s.size("lg");
+
+  button {
+    @include t.inter;
+
+    font-size: 1rem;
+    display: flex;
+    color: white;
+    justify-content: space-between;
+    align-items: center;
+    background: none;
+    border: none;
+    padding: 0;
+
+    svg {
+      @include s.box("lg");
+
+      color: c.$white;
+    }
+  }
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: s.size("xs");
+    overflow: hidden;
+
+    li {
+      @include t.poppins;
+
+      display: flex;
+      color: white;
+      align-items: center;
+      gap: s.size("xs");
+      font-size: 0.875rem;
+    }
+  }
+}
+
+.image {
+  @include s.box("xxl");
+}

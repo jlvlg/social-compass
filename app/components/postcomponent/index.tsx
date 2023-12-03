@@ -2,8 +2,7 @@ import Icons from "@assets/icons";
 import dayjs from "@util/dates";
 import { useToggle } from "@util/hooks";
 import { Post } from "@util/types";
-import { AnimatePresence, motion } from "framer-motion";
-import { useImmer } from "use-immer";
+import { motion } from "framer-motion";
 import CommentComponent from "../commentComponent";
 import CreateComment from "../createcomment";
 import Interaction from "../interaction";
@@ -14,7 +13,6 @@ export type Props = { post: Post };
 
 function PostComponent({ post }: Props) {
   const [showComments, toggleComments] = useToggle(false);
-  const [postState, setPostState] = useImmer(post);
   const [liked, toggleLiked] = useToggle(false);
 
   function handleLikes() {
@@ -24,8 +22,8 @@ function PostComponent({ post }: Props) {
   }
 
   return (
-    <div className={styles.post}>
-      <div className={styles.author}>
+    <article className={styles.post}>
+      <header className={styles.author}>
         <UserImage user={post.author} className={styles["author-image"]} />
         <div>
           {post.author.name}
@@ -36,7 +34,7 @@ function PostComponent({ post }: Props) {
             <span>{post.location}</span>
           </div>
         </div>
-      </div>
+      </header>
       {post.text}
       {post.image && <img src={post.image} />}
       <div className={styles.interactions}>
@@ -44,42 +42,32 @@ function PostComponent({ post }: Props) {
           onClick={toggleLiked}
           icon="like"
           text="Curtiu"
+          isActive={liked}
           interactions={+post.likes}
         />
         <Interaction
           onClick={toggleComments}
           icon="comment"
           text="Comentários"
+          isActive={showComments}
           interactions={post.comments.length}
         />
         <Interaction icon="share" text="Compartilhar" />
       </div>
       <CreateComment post={post} />
       {post.comments.length > 0 && (
-        <>
-          <ul className={styles.comments}>
-            <AnimatePresence>
-              <li key="commentstitle">Todos os comentários</li>
-              {post.comments
-                .filter((_, i) => showComments || i === 0)
-                .map((c, i) => (
-                  <motion.li
-                    layout
-                    variants={{
-                      hidden: { height: 0, marginBlock: "-8px" },
-                      visible: { height: "auto", marginBlock: 0 },
-                    }}
-                    style={{ overflow: "hidden" }}
-                    initial="hidden"
-                    animate="visible"
-                    exit="hidden"
-                    key={"comment" + c.id}
-                  >
-                    <CommentComponent comment={c} />
-                  </motion.li>
-                ))}
-            </AnimatePresence>
-          </ul>
+        <section className={styles.comments}>
+          <p>Todos os comentários</p>
+          <motion.ul
+            initial={{ height: 30 }}
+            animate={{ height: showComments ? "auto" : 30 }}
+          >
+            {post.comments.map((c, i) => (
+              <li key={"comment" + c.id}>
+                <CommentComponent comment={c} />
+              </li>
+            ))}
+          </motion.ul>
           {post.comments.length > 1 && (
             <button
               key="showcomments"
@@ -89,9 +77,9 @@ function PostComponent({ post }: Props) {
               {showComments ? "Esconder" : "Ver todos"} os comentários
             </button>
           )}
-        </>
+        </section>
       )}
-    </div>
+    </article>
   );
 }
 

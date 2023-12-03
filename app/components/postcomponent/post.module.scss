@@ -59,21 +59,30 @@
 .comments {
   @include t.poppins;
 
-  display: flex;
-  flex-direction: column;
-  gap: s.size("xs");
   font-size: 0.75rem;
+
+  &,
+  ul {
+    display: flex;
+    gap: s.size("xs");
+    flex-direction: column;
+  }
+
+  ul {
+    overflow: hidden;
+  }
 }
 
 .comments-button {
-  all: unset;
-
   @include t.poppins;
 
   display: flex;
+  background: none;
+  border: none;
+  cursor: pointer;
   justify-content: center;
-  padding-block-start: s.size("xs");
-  margin-block-start: s.size("xs");
+  padding-block: s.size("xs");
+  margin-block: s.size("xs") calc(0px - s.size("xs"));
   border-block-start: 2px solid #27282f;
   color: c.$yellow;
   font-size: 0.875rem;

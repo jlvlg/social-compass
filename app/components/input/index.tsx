@@ -23,7 +23,7 @@ function Input({ icon, label, name, isValid = true, type, mask }: Props) {
     let instance: Inputmask.Instance | undefined;
 
     if (mask && inputRef.current)
-      instance = Inputmask({ ...mask, jitMasking: true }).mask(
+      instance = Inputmask.default({ ...mask, jitMasking: true }).mask(
         inputRef.current,
       );
 

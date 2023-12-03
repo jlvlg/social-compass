@@ -24,8 +24,9 @@ function EnsureLogin({ children }: React.PropsWithChildren<Props>) {
   return (
     <>
       {user.token ? (
-        <div>
-          <div>
+        <div style={{ height: "100%" }}>
+          <div></div>
+          <div style={{ height: "100%" }}>
             <div></div>
             {children}
           </div>

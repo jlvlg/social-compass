@@ -1,7 +1,8 @@
 import { Post, User } from "./types";
 
 class server {
-  private baseURL = new URL("https://social-compass-server.onrender.com");
+  // private baseURL = new URL("https://social-compass-server.onrender.com");
+  private baseURL = new URL("http://localhost:3001");
   private headers = { "Content-Type": "application/json" };
 
   private async get(
@@ -62,11 +63,20 @@ class server {
 
   async getUserByID(id: string, token: string, signal?: AbortSignal) {
     console.log("getuser sent");
-    return this.get(
+    return (await this.get(
       `/users/${id}`,
+      { signal, cache: "no-store" },
+      { Authorization: "Bearer " + token },
+    )) as User;
+  }
+
+  async getAllUsers(token: string, signal?: AbortSignal) {
+    console.log("getusers sent");
+    return (await this.get(
+      "/users",
       { signal },
       { Authorization: "Bearer " + token },
-    ) as User;
+    )) as User[];
   }
 
   async getAllPosts(token: string, signal?: AbortSignal) {

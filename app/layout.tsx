@@ -1,8 +1,8 @@
 import { Provider } from "@store";
 import fonts from "@styles/fonts";
 import "@styles/fonts.scss";
+import "@styles/global.scss";
 import type { Metadata } from "next";
-import "reset-css";
 
 export const metadata: Metadata = {
   title: "Social Compass",

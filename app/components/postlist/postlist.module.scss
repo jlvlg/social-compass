@@ -1,0 +1,7 @@
+@use "@styles/sizings" as s;
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: s.size("lg");
+}

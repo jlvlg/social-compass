@@ -1,5 +1,4 @@
 import Icons, { IconType } from "@assets/icons";
-import { useToggle } from "@util/hooks";
 import styles from "./interaction.module.scss";
 
 export type Props = {
@@ -7,25 +6,25 @@ export type Props = {
   text: string;
   className?: string;
   interactions?: number;
+  isActive?: boolean;
   onClick?: () => void;
 };
 
-function Interaction({ icon, text, interactions, className, onClick }: Props) {
-  const [active, toggleActive] = useToggle(false);
+function Interaction({
+  icon,
+  text,
+  interactions,
+  className,
+  onClick,
+  isActive,
+}: Props) {
   const Icon = Icons[icon];
-
-  function handleClick() {
-    if (onClick) {
-      toggleActive();
-      onClick();
-    }
-  }
 
   return (
     <div
-      onClick={handleClick}
+      onClick={onClick}
       className={`${styles.interaction} ${
-        active ? styles.active : ""
+        isActive ? styles.active : ""
       } ${className}`}
     >
       <Icon />

@@ -4,6 +4,7 @@ import at from "./at.svg";
 import bell from "./bell.svg";
 import calendar from "./calendar.svg";
 import camera from "./camera.svg";
+import caret from "./caret.svg";
 import clip from "./clip.svg";
 import clock from "./clock.svg";
 import coin from "./coin.svg";
@@ -47,6 +48,7 @@ const Icons = {
   camera,
   clip,
   smile,
+  caret,
 };
 
 export type IconType = keyof typeof Icons;
