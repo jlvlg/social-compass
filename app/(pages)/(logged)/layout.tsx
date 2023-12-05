@@ -16,7 +16,6 @@ function EnsureLogin({ children }: React.PropsWithChildren<Props>) {
   const [isMenuExpanded, toggleMenuExpanded, setIsMenuExpanded] =
     useToggle(false);
   const dispatch = useDispatch();
-  console.log(user);
 
   useEffect(() => {
     const savedUser = JSON.parse(localStorage.getItem("user") || "{}");

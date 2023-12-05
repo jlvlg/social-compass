@@ -8,6 +8,7 @@
 }
 
 .empty {
+  box-sizing: border-box;
   justify-content: center;
   align-items: center;
   padding: s.size("lg");

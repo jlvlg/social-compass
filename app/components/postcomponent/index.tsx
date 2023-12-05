@@ -17,8 +17,8 @@ function PostComponent({ post }: Props) {
   const [liked, toggleLiked] = useToggle(false);
 
   function handleLikes() {
-    if (!liked) {
-    }
+    // if (!liked) {
+    // }
     toggleLiked();
   }
 

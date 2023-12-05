@@ -35,7 +35,7 @@ function Profile({ params }: Props) {
           <div className={styles.tabs}>
             Followers Following <span>Posts</span>
           </div>
-          <PostList posts={user.posts!} />
+          <PostList posts={[]} />
         </div>
       </div>
     </div>
