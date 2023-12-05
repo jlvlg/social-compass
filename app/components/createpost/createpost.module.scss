@@ -1,0 +1,81 @@
+@use "@styles/sizings" as s;
+@use "@styles/colors" as c;
+@use "@styles/typography" as t;
+
+.container {
+  flex-basis: 100%;
+  display: flex;
+  align-items: center;
+  gap: s.size("xs");
+}
+
+.image {
+  @include s.box("xxl");
+}
+
+.form {
+  @include t.poppins;
+
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  background-color: c.$gray-650;
+  flex: 1;
+  border-radius: 48px;
+  padding-inline: s.size("lg");
+  padding-block: 8px;
+  gap: s.size("xxxs");
+
+  label {
+    position: absolute;
+    inset-inline-start: s.size("lg");
+    inset-block-start: 8px;
+    transition: color 100ms ease;
+    font-size: 0.875rem;
+    color: c.$gray-300;
+    pointer-events: none;
+  }
+
+  input {
+    background: none;
+    flex-basis: 100%;
+    border: none;
+    color: c.$white;
+
+    &:focus {
+      outline: none;
+
+      & + label {
+        color: c.$white;
+      }
+    }
+
+    @include s.screen("tablet") {
+      flex: 1 1 auto;
+    }
+  }
+}
+
+.icons {
+  display: flex;
+  gap: 24px;
+  color: c.$gray-200;
+
+  svg {
+    @include s.box("lg");
+  }
+}
+
+.toplevel {
+  padding: 16px;
+  align-items: center;
+  justify-content: space-between;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+
+  button {
+    inline-size: fit-content;
+  }
+}

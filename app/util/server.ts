@@ -1,8 +1,7 @@
 import { Post, User } from "./types";
 
 class server {
-  // private baseURL = new URL("https://social-compass-server.onrender.com");
-  private baseURL = new URL("http://localhost:3001");
+  private baseURL = new URL("https://social-compass-server.onrender.com");
   private headers = { "Content-Type": "application/json" };
 
   private async get(
@@ -99,6 +98,21 @@ class server {
     return await this.post(
       "/comments",
       { content, authorId, postId },
+      { signal },
+      { Authorization: "Bearer " + token },
+    );
+  }
+
+  async postPost(
+    text: string,
+    authorId: string,
+    token: string,
+    signal?: AbortSignal,
+  ) {
+    console.log("postpost sent");
+    return await this.post(
+      "/posts",
+      { text, authorId },
       { signal },
       { Authorization: "Bearer " + token },
     );

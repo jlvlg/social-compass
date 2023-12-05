@@ -1,5 +1,6 @@
 "use client";
 
+import CreatePost from "@/app/components/createpost";
 import List from "@components/list";
 import PostList from "@components/postlist";
 import { useDispatch, useSelector } from "@store";
@@ -32,6 +33,7 @@ export default function Home() {
   return (
     <div className={styles.page}>
       <main className={styles.posts}>
+        <CreatePost />
         <PostList posts={posts} />
       </main>
       <section className={styles.side}>

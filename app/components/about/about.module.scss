@@ -10,6 +10,7 @@
   font-size: 1.25rem;
   font-weight: 700;
   flex-basis: 100%;
+  block-size: min-content;
 
   li {
     display: flex;
@@ -35,5 +36,7 @@
 
   @include s.screen("tablet") {
     flex-basis: 33%;
+    position: sticky;
+    top: 24px;
   }
 }

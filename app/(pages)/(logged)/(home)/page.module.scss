@@ -12,16 +12,19 @@
 }
 
 .posts {
-  flex-basis: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  inline-size: 100%;
 
   @include s.screen("tablet") {
-    flex-basis: 75%;
+    inline-size: 75%;
   }
 }
 
 .side {
   display: none;
-  flex-basis: 25%;
+  inline-size: 25%;
   right: 36px;
 
   @include s.screen("tablet") {

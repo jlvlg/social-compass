@@ -19,17 +19,18 @@
   position: absolute;
   inset-inline-start: 45px;
   inset-block-start: 140px;
+  inline-size: 100%;
 
   hgroup {
     @include t.nunito;
 
+    color: c.$yellow;
     position: absolute;
     inset-inline-start: 160px;
     inset-block-start: 175px;
 
     h1 {
       font-size: 1.875rem;
-      color: c.$yellow;
       font-weight: 700;
     }
 

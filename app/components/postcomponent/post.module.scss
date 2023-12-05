@@ -18,13 +18,19 @@
 
   > img {
     margin-inline: - s.size("xs");
+    inline-size: calc(100% + 2 * s.size("xs"));
     object-fit: cover;
     object-position: center;
   }
 }
 
 .author {
+  @include t.poppins;
+
   font-size: 0.875rem;
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
   display: flex;
   align-items: center;
   gap: s.size("xs");

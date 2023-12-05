@@ -3,6 +3,7 @@ import dayjs from "@util/dates";
 import { useToggle } from "@util/hooks";
 import { Post } from "@util/types";
 import { motion } from "framer-motion";
+import Link from "next/link";
 import CommentComponent from "../commentComponent";
 import CreateComment from "../createcomment";
 import Interaction from "../interaction";
@@ -23,17 +24,19 @@ function PostComponent({ post }: Props) {
 
   return (
     <article className={styles.post}>
-      <header className={styles.author}>
-        <UserImage user={post.author} className={styles["author-image"]} />
-        <div>
-          {post.author.name}
-          <div className={styles.date}>
-            <Icons.clock />
-            {dayjs().to(post.createdAt)}
-            {post.location && " em "}
-            <span>{post.location}</span>
+      <header>
+        <Link href={`/profile/${post.author.id}`} className={styles.author}>
+          <UserImage user={post.author} className={styles["author-image"]} />
+          <div>
+            {post.author.name}
+            <div className={styles.date}>
+              <Icons.clock />
+              {dayjs().to(post.createdAt)}
+              {post.location && " em "}
+              <span>{post.location}</span>
+            </div>
           </div>
-        </div>
+        </Link>
       </header>
       {post.text}
       {post.image && <img src={post.image} />}
