@@ -5,7 +5,9 @@
 .container {
   display: flex;
   flex-direction: column;
+  inline-size: 100%;
   padding: s.size("md") s.size("lg");
+  block-size: min-content;
 
   button {
     @include t.inter;
@@ -32,14 +34,16 @@
     gap: s.size("xs");
     overflow: hidden;
 
-    li {
+    a {
       @include t.poppins;
 
       display: flex;
       color: white;
+      text-decoration: none;
       align-items: center;
       gap: s.size("xs");
       font-size: 0.875rem;
+      cursor: pointer;
     }
   }
 }

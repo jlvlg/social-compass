@@ -15,6 +15,12 @@ function saveUser(): Thunk {
   };
 }
 
+function logout(): Thunk {
+  return (dispatch, getState) => {
+    localStorage.removeItem("user");
+  };
+}
+
 const loadUser = createAsyncThunk(
   "user/loadUser",
   async (savedUser: any, thunkAPI) => {
@@ -45,6 +51,7 @@ const userSlice = createSlice({
       if (payload.address) state.address = payload.address;
       if (payload.phone) state.phone = payload.phone;
       if (payload.occupation) state.occupation = payload.occupation;
+      if (payload.posts) state.posts = payload.posts;
     },
   },
   extraReducers: (builder) => {
@@ -61,10 +68,11 @@ const userSlice = createSlice({
         if (payload.address) state.address = payload.address;
         if (payload.phone) state.phone = payload.phone;
         if (payload.occupation) state.occupation = payload.occupation;
+        if (payload.posts) state.posts = payload.posts;
       }
     });
   },
 });
 
-export const actions = { ...userSlice.actions, saveUser, loadUser };
+export const actions = { ...userSlice.actions, saveUser, loadUser, logout };
 export const reducer = userSlice.reducer;

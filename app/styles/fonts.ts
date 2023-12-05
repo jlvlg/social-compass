@@ -1,4 +1,4 @@
-import { Inter, Poppins } from "next/font/google";
+import { Inter, Nunito, Poppins } from "next/font/google";
 import "./fonts.scss";
 
 export const poppins = Poppins({
@@ -10,6 +10,11 @@ export const poppins = Poppins({
 export const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
+});
+
+export const nunito = Nunito({
+  subsets: ["latin"],
+  variable: "--font-nunito",
 });
 
 export default [inter, poppins].map((i) => i.className).join(" ");

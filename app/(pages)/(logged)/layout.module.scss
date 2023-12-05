@@ -1,0 +1,13 @@
+@use "@styles/colors" as c;
+
+.layout {
+  display: flex;
+  block-size: 100%;
+}
+
+.page {
+  min-block-size: 100%;
+  block-size: fit-content;
+  inline-size: 100%;
+  background: c.$gray-900;
+}

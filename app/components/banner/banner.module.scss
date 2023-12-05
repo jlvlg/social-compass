@@ -1,0 +1,58 @@
+@use "@styles/typography" as t;
+@use "@styles/colors" as c;
+@use "@styles/sizings" as s;
+
+.container {
+  block-size: 400px;
+  position: relative;
+
+  > img {
+    border-radius: 16px;
+    block-size: 280px;
+    inline-size: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+}
+
+.user {
+  position: absolute;
+  inset-inline-start: 45px;
+  inset-block-start: 140px;
+
+  hgroup {
+    @include t.nunito;
+
+    position: absolute;
+    inset-inline-start: 160px;
+    inset-block-start: 175px;
+
+    h1 {
+      font-size: 1.875rem;
+      color: c.$yellow;
+      font-weight: 700;
+    }
+
+    p {
+      font-size: 1rem;
+    }
+  }
+}
+
+.userimage {
+  block-size: 180px;
+  inline-size: 180px;
+}
+
+.edit {
+  position: absolute;
+  inline-size: fit-content;
+  inset-block-end: 13px;
+  inset-inline-start: 8px;
+
+  @include s.screen("tablet") {
+    inset-block-end: 40px;
+    inset-inline-start: unset;
+    inset-inline-end: 140px;
+  }
+}

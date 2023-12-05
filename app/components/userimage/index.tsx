@@ -1,4 +1,4 @@
-import NotFound from "@assets/icons/image.svg";
+import Icons from "@assets/icons";
 import { User } from "@util/types";
 import styles from "./userimage.module.scss";
 
@@ -10,7 +10,7 @@ function UserImage({ user, className }: Props) {
       {user.image ? (
         <img src={user.image} alt={`${user.name}'s profile picture`} />
       ) : (
-        <NotFound />
+        <Icons.user />
       )}
     </div>
   );

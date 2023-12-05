@@ -1,16 +1,21 @@
 "use client";
 
 import AuthLayout from "@components/auth";
+import SideMenu from "@components/sidemenu";
+import Topbar from "@components/topbar";
 import { actions, useDispatch, useSelector } from "@store";
-import { useRouter } from "next/navigation";
+import { useToggle } from "@util/hooks";
+import { AnimatePresence } from "framer-motion";
 import React, { useEffect } from "react";
+import styles from "./layout.module.scss";
 
 export type Props = {};
 
 function EnsureLogin({ children }: React.PropsWithChildren<Props>) {
   const user = useSelector((state) => state.user);
+  const [isMenuExpanded, toggleMenuExpanded, setIsMenuExpanded] =
+    useToggle(false);
   const dispatch = useDispatch();
-  const router = useRouter();
 
   useEffect(() => {
     const savedUser = JSON.parse(localStorage.getItem("user") || "{}");
@@ -19,15 +24,24 @@ function EnsureLogin({ children }: React.PropsWithChildren<Props>) {
     return () => {
       res.abort();
     };
-  }, [dispatch, router]);
+  }, [dispatch]);
+
+  function onRedirect() {
+    toggleMenuExpanded();
+  }
 
   return (
     <>
       {user.token ? (
-        <div style={{ height: "100%" }}>
-          <div></div>
-          <div style={{ height: "100%" }}>
-            <div></div>
+        <div className={styles.layout}>
+          <AnimatePresence>
+            {isMenuExpanded && <SideMenu onRedirect={onRedirect} />}
+          </AnimatePresence>
+          <div className={styles.page}>
+            <Topbar
+              isMenuExpanded={isMenuExpanded}
+              onExpand={toggleMenuExpanded}
+            />
             {children}
           </div>
         </div>

@@ -9,11 +9,11 @@
   border: none;
   color: c.$white;
   border-radius: 46px;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: 600;
 
   @include t.poppins;
-
-  font-size: 1rem;
-  font-weight: 600;
 }
 
 .primary {

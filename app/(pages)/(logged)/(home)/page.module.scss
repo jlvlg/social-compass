@@ -3,26 +3,28 @@
 
 .page {
   display: flex;
-  background: c.$gray-900;
   gap: 36px;
-  padding: 36px;
+  padding: 12px;
+
+  @include s.screen("tablet") {
+    padding: 36px;
+  }
 }
 
 .posts {
-  inline-size: 100%;
+  flex-basis: 100%;
 
   @include s.screen("tablet") {
-    inline-size: calc(73%);
+    flex-basis: 75%;
   }
 }
 
 .side {
   display: none;
-  inline-size: calc(25% - 36px);
-  position: fixed;
+  flex-basis: 25%;
   right: 36px;
 
   @include s.screen("tablet") {
-    display: block;
+    display: flex;
   }
 }

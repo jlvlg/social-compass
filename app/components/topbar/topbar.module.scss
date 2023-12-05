@@ -1,0 +1,64 @@
+@use "@styles/colors" as c;
+@use "@styles/sizings" as s;
+@use "@styles/typography" as t;
+
+.topbar {
+  @include t.poppins;
+
+  color: white;
+  font-size: 1rem;
+  justify-content: space-between;
+  block-size: 73px;
+  display: flex;
+  padding-inline: s.size("xl");
+  background: c.$gray-700;
+  border: 2px solid c.$gray-600;
+
+  > div {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+
+    > svg {
+      @include s.box("xxl");
+
+      color: c.$gray-200;
+    }
+  }
+}
+
+.socialcompass {
+  @include t.poppins;
+
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: s.size("xxs");
+  justify-content: center;
+  border: none;
+  background: none;
+
+  > div {
+    @include s.box("xxl");
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: c.$gray-600;
+    background: c.$gradient-button;
+    border-radius: 50%;
+
+    div,
+    svg {
+      @include s.box("md");
+    }
+  }
+}
+
+.image {
+  @include s.box("xxxl");
+
+  cursor: pointer;
+}

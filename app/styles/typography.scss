@@ -11,3 +11,9 @@
   font-style: normal;
   line-height: normal;
 }
+
+@mixin nunito() {
+  font-family: f.$font-nunito;
+  font-style: normal;
+  line-height: normal;
+}

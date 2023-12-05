@@ -1,12 +1,19 @@
 import Icons from "@/app/assets/icons";
 import { useToggle } from "@/app/util/hooks";
 import { AnimatePresence, motion } from "framer-motion";
+import Link from "next/link";
 import Card from "../card";
 import UserImage from "../userimage";
 import styles from "./list.module.scss";
 
 export type Props = {
-  items: { id: string; image?: string; title: string; subtitle?: string }[];
+  items: {
+    id: string;
+    image?: string;
+    title: string;
+    subtitle?: string;
+    link: string;
+  }[];
   title: string;
 };
 
@@ -15,10 +22,9 @@ function List({ items, title }: Props) {
 
   return (
     <Card className={styles.container}>
-      <button>
-        <h2>{title}</h2>
+      <button onClick={toggleExpanded}>
+        {title}
         <motion.span
-          onClick={toggleExpanded}
           initial={{ rotate: 180 }}
           animate={{ rotate: expanded ? 0 : 180 }}
         >
@@ -38,8 +44,10 @@ function List({ items, title }: Props) {
           >
             {items.map((i) => (
               <li key={i.id}>
-                <UserImage className={styles.image} user={i} />
-                {i.title}
+                <Link href={i.link}>
+                  <UserImage className={styles.image} user={i} />
+                  {i.title}
+                </Link>
               </li>
             ))}
           </motion.ul>

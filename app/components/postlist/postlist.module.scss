@@ -5,3 +5,10 @@
   flex-direction: column;
   gap: s.size("lg");
 }
+
+.empty {
+  justify-content: center;
+  align-items: center;
+  padding: s.size("lg");
+  color: white;
+}

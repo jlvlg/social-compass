@@ -1,0 +1,51 @@
+@use "@styles/sizings" as s;
+@use "@styles/typography" as t;
+@use "@styles/colors" as c;
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+  padding: 36px 12px;
+
+  @include s.screen("tablet") {
+    padding: 36px;
+  }
+}
+
+.userinfo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.posts {
+  flex: 1;
+  padding: 12px;
+
+  @include s.screen("tablet") {
+    padding: 24px;
+  }
+}
+
+.tabs {
+  @include t.nunito;
+
+  display: flex;
+  color: c.$yellow;
+  font-size: 1.25rem;
+  justify-content: center;
+  white-space: pre;
+  block-size: 41px;
+  padding-block-end: 16px;
+  margin-block-end: 16px;
+  border-block-end: 2px solid #f5f5f519;
+
+  span {
+    font-weight: 800;
+  }
+
+  @include s.screen("tablet") {
+    margin-inline: 24px;
+  }
+}

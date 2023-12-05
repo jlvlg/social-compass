@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint && stylelint **/*.scss && prettier -w ./app/**/*",
+    "lint": "next lint --fix && stylelint --fix **/*.scss && prettier -w ./app/**/*",
     "lint:staged": "lint-staged",
     "prepare": "husky install",
     "test": "jest --passWithNoTests"

@@ -30,7 +30,7 @@ export default function Home() {
   }, [user.token, dispatch]);
 
   return (
-    <div className={styles.page} style={{ height: "100%" }}>
+    <div className={styles.page}>
       <main className={styles.posts}>
         <PostList posts={posts} />
       </main>
@@ -41,6 +41,7 @@ export default function Home() {
             id: u.id || "",
             image: u.image,
             title: u.name || "",
+            link: `/profile/${u.id}`,
           }))}
         />
       </section>

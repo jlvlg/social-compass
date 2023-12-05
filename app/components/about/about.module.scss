@@ -1,0 +1,39 @@
+@use "@styles/sizings" as s;
+@use "@styles/colors" as c;
+@use "@styles/typography" as t;
+
+.container {
+  @include t.nunito;
+
+  padding: 24px;
+  color: c.$white;
+  font-size: 1.25rem;
+  font-weight: 700;
+  flex-basis: 100%;
+
+  li {
+    display: flex;
+    gap: 12px;
+    font-size: 1rem;
+    font-weight: 400;
+    color: rgb(245 245 245 / 70%);
+
+    &:not(:last-child) {
+      padding-block: 24px;
+    }
+
+    &:last-child {
+      padding-block-start: 24px;
+    }
+
+    svg {
+      inline-size: 20px;
+      block-size: 20px;
+      color: c.$white;
+    }
+  }
+
+  @include s.screen("tablet") {
+    flex-basis: 33%;
+  }
+}

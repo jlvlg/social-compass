@@ -10,6 +10,7 @@ export interface User {
   phone?: string;
   occupation?: string;
   token?: string;
+  posts?: Post[];
 }
 
 export interface Comment {

@@ -1,11 +1,12 @@
 import { Post } from "@util/types";
+import Card from "../card";
 import PostComponent from "../postcomponent";
 import styles from "./postlist.module.scss";
 
 export type Props = { posts: Post[]; className?: string };
 
 function PostList({ posts, className }: Props) {
-  return (
+  return posts.length ? (
     <ul className={`${styles.list} ${className}`}>
       {posts.map((p) => (
         <li key={p.id}>
@@ -13,6 +14,8 @@ function PostList({ posts, className }: Props) {
         </li>
       ))}
     </ul>
+  ) : (
+    <Card className={`${styles.list} ${styles.empty}`}>Nenhum post ainda</Card>
   );
 }
 

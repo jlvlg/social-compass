@@ -1,0 +1,52 @@
+@use "@styles/sizings" as s;
+@use "@styles/colors" as c;
+@use "@styles/typography" as t;
+
+.container {
+  display: flex;
+  background: c.$gray-700;
+  justify-content: center;
+  padding-block: s.size("xxxl");
+  border: 2px solid c.$gray-600;
+  block-size: 100%;
+  inline-size: 100vw;
+
+  > div {
+    inline-size: 60%;
+    block-size: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: s.size("md");
+
+    img {
+      inline-size: 100%;
+      block-size: auto;
+    }
+
+    nav {
+      display: flex;
+      flex-direction: column;
+      inline-size: 100%;
+      border: 2px solid c.$gray-600;
+
+      a {
+        padding-block: s.size("xxs");
+        text-decoration: none;
+        color: c.$white;
+        cursor: pointer;
+        inline-size: 100%;
+        text-align: center;
+      }
+    }
+  }
+
+  @include s.screen("tablet") {
+    width: 25vw;
+  }
+}
+
+.active {
+  background: c.$orange !important;
+  color: c.$gray-700 !important;
+}
