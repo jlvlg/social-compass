@@ -13,7 +13,6 @@ class server {
       ...options,
       headers: { ...this.headers, ...headers },
     });
-    console.log(res);
 
     const json = await res.json();
 
@@ -34,7 +33,6 @@ class server {
       ...options,
       headers: { ...this.headers, ...headers },
     });
-    console.log(res);
 
     const json = await res.json();
 
@@ -44,7 +42,6 @@ class server {
   }
 
   async signIn(username: string, password: string, signal?: AbortSignal) {
-    console.log("signin sent");
     return await this.post(
       "/auth/login",
       { username, password },
@@ -53,7 +50,6 @@ class server {
   }
 
   async register(values: Record<string, string>, signal?: AbortSignal) {
-    console.log("register sent");
     return await this.post("/auth/register", values, {
       cache: "no-store",
       signal,
@@ -61,7 +57,6 @@ class server {
   }
 
   async getUserByID(id: string, token: string, signal?: AbortSignal) {
-    console.log("getuser sent");
     return (await this.get(
       `/users/${id}`,
       { signal, cache: "no-store" },
@@ -70,7 +65,6 @@ class server {
   }
 
   async getAllUsers(token: string, signal?: AbortSignal) {
-    console.log("getusers sent");
     return (await this.get(
       "/users",
       { signal },
@@ -79,7 +73,6 @@ class server {
   }
 
   async getAllPosts(token: string, signal?: AbortSignal) {
-    console.log("getposts sent");
     return (await this.get(
       "/posts",
       { signal, cache: "no-store" },
@@ -94,7 +87,6 @@ class server {
     token: string,
     signal?: AbortSignal,
   ) {
-    console.log("postcomment sent");
     return await this.post(
       "/comments",
       { content, authorId, postId },
@@ -109,10 +101,9 @@ class server {
     token: string,
     signal?: AbortSignal,
   ) {
-    console.log("postpost sent");
     return await this.post(
       "/posts",
-      { text, authorId },
+      { text, authorId, location: "" },
       { signal },
       { Authorization: "Bearer " + token },
     );
