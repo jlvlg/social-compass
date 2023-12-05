@@ -18,6 +18,7 @@ function saveUser(): Thunk {
 function logout(): Thunk {
   return (dispatch, getState) => {
     localStorage.removeItem("user");
+    dispatch(actions.setUser({}));
   };
 }
 
